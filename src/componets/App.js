@@ -1,26 +1,24 @@
-import React from 'react';
-import axios from 'axios';
+import React, {useState} from 'react';
+import unsplash from '../api/unsplash';
 import SearchBar from './SearchBar';
+import ImageList from './ImageList';
 
 const App = () => {
 
+    const [images, setImages] = useState([]);
+
     //This function is using callback, gets variable from the child components
-    const onSearchSubmit = (term) => {
-        // console.log(term)
+    const onSearchSubmit = async (term) => {
         //root API location + specific API route
-        axios.get('https://api.unsplash.com/search/photos', {
-            params: {query: term},
-            headers: {
-                Authorization: 
-                    'Client-ID 94b1974dabe9292a5e385f4bba69e1919cc1a3d29d7995a08b8861bb2daec10f'
-            }
-        }
-        );
+        //unsplash.get axios api js file that was create for reusability see imports
+        const response = await unsplash.get('/search/photos', {params: {query: term}});
+        setImages(response.data.results)
     }
 
     return(
         <div className='ui container' style={{marginTop: '10px'}}>
             <SearchBar onSubmit={onSearchSubmit}/>
+            <ImageList imagesList={images}/>       
         </div>
     );
 }
