@@ -11,6 +11,7 @@ const ImageList = (props) => {
     return (
         <div>
             {img}
+
         </div>
     );
 }
