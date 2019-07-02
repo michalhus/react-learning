@@ -15,10 +15,33 @@ const App = () => {
         setImages(response.data.results)
     }
 
+    console.log(images)
+    console.log(images[0])
+
+    //WORKS FINE:
+    // const x = images.map(( {id}, index) => {
+    //     return (
+    //         <p key={index}>
+    //            {id} 
+    //         </p>
+    //     );
+    // })
+
+    //Works FINE:
+    // const x = images.map(( {urls}, index) => {
+    //     return (
+    //         <p key={index}>
+    //            {urls.regular} 
+    //         </p>
+    //     );
+    // })
+
+
     return(
         <div className='ui container' style={{marginTop: '10px'}}>
             <SearchBar onSubmit={onSearchSubmit}/>
-            <ImageList imagesList={images}/>       
+            {/* {x} */}
+            {/* <ImageList imagesList={images}/>        */}
         </div>
     );
 }
