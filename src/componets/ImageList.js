@@ -1,17 +1,36 @@
 import React from 'react';
+import './ImageList.css';
 
 const ImageList = (props) => {
 
-    const img = props.images.map(( {urls}, index) => {
+    // const img = props.images.map(( {urls}, index) => {
+    //     return (
+    //         <img key={index} src={urls.regular} />
+    //     );
+    // })
+
+    // const img = props.images.map(( image) => {
+    //     return (
+    //         //key should be in a root element in this case a div
+    //         <div key={image.id} >
+    //             <img alt={image.descripiton} src={image.urls.regular} />
+    //         </div>
+    //     );
+    // })
+
+    //Destructurize off objects from the prop
+    const img = props.images.map(({id, descripiton, urls}) => {
         return (
-            <img src={urls.regular} />
+            //key should be in a root element in this case a img
+            <img key={id} alt={descripiton} src={urls.regular} />
         );
     })
 
     return (
-        <div>
+        //Put  className="image-list"  in this ROOT function return div 
+        // as putting it in the return const img seems not to be working
+        <div className="image-list" >
             {img}
-
         </div>
     );
 }
