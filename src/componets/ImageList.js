@@ -13,10 +13,10 @@ const ImageList = (props) => {
     const img = props.images.map( image => {
         return (
             //key should be in a root element in this case a div
-            // <div key={image.id} >
-            //     <img alt={image.descripiton} src={image.urls.regular} />
-            // </div>
-            <ImageCard key={image.id} image={image} />
+            <div key={image.id} >
+                <ImageCard image={image} />
+                {/* <img alt={image.descripiton} src={image.urls.regular} /> */}
+            </div>
         );
     })
 
@@ -27,6 +27,8 @@ const ImageList = (props) => {
     //         <img key={id} alt={descripiton} src={urls.regular} />
     //     );
     // })
+
+    
 
     return (
         //Put  className="image-list"  in this ROOT function return div 
