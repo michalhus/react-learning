@@ -1,59 +1,36 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 const ImageCard = (props) => {
 
-    //Sets a referance from DOM - hook use
+    //Hooks for state and setState in react 16.8
+    const [spans, setSpans] = useState(0)
+
+    //Define a referance from DOM hook and it's use
     const imageRef = useRef({});
 
-    //Define funcion using const or let with name of the fuction
-    const setSpans = () => {
-        console.log(imageRef.current.clientHeight);
+    //Define funcion using const with name of the fuction
+    //This function is executed on the load of the page - see useEffect()
+    const onLoad = () => {
+        // console.log(imageRef.current.clientHeight);
+        //imageRef is DOM object - current is object's current status - clientHeight is element/object's attribute 
+        const height = imageRef.current.clientHeight
+        //Updating state of the spans variable
+        setSpans(Math.ceil( height / 200))
     }
-    
 
+    //Detect changes in state of the page - uses eventListener to update state of the prop
     useEffect (() => {
-        imageRef.current.addEventListener('load', setSpans);
+        imageRef.current.addEventListener('load', onLoad);
     })
-
- 
-
-
-    // const onButtonClick = () => {
-    //     // `current` points to the mounted text input element
-    //     imageRef.current.clientHeight;
-    // };
-
-    // return (
-    //       <>
-    //         <input ref={imageRef} type="text" />
-    //         <button onClick={onButtonClick}>Focus the input</button>
-    //       </>
-    // ); 
-      
-    console.log(imageRef)
     
-    // console.log(imageRef.current.addEventListener('load'))
-
-    // console.log(imageRef.current.clientHeight)   // is not loaded yet wait before rendering
-    
-    
- 
-
-    // setSpans() {
-        
-    // }
-
-
     //Deconstruction of objects/values from the prop
     const {descritpion, urls} = props.image;
 
     return (
-        <div>
-            <img
+            <img style={{gridRowEnd: `span${spans}` }}
             ref={imageRef} 
             alt={descritpion} 
             src={urls.regular} /> 
-        </div>
     )
 }
 

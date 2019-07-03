@@ -4,6 +4,7 @@ import ImageCard from './ImageCard';
 
 const ImageList = (props) => {
 
+    //Deconstructing urls object from the prop and using array index value
     // const img = props.images.map(( {urls}, index) => {
     //     return (
     //         <img key={index} src={urls.regular} />
@@ -12,10 +13,10 @@ const ImageList = (props) => {
 
     const img = props.images.map( image => {
         return (
-            //key should be in a root element in this case a div
+            //Key should be in a root element in this case a div
+            //Created new component that takes in prop and all it children
             <div key={image.id} >
                 <ImageCard image={image} />
-                {/* <img alt={image.descripiton} src={image.urls.regular} /> */}
             </div>
         );
     })
@@ -27,8 +28,6 @@ const ImageList = (props) => {
     //         <img key={id} alt={descripiton} src={urls.regular} />
     //     );
     // })
-
-    
 
     return (
         //Put  className="image-list"  in this ROOT function return div 
